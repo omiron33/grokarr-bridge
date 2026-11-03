@@ -1,0 +1,1 @@
+Describe the behavior changed, relevant API versions and validation. Confirm no credentials or private stack data are included. Permission changes need tests proving read-only and confirmation gates still hold.

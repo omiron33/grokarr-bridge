@@ -1,0 +1,4020 @@
+[
+  {
+    "name": "bridge_status",
+    "description": "Show local bridge mode, configured app instances and capabilities (no secrets).",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {},
+      "title": "Empty",
+      "type": "object"
+    }
+  },
+  {
+    "name": "discover",
+    "description": "Read-only scan of owner-configured local scope; never sends app keys during identification.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {},
+      "title": "Empty",
+      "type": "object"
+    }
+  },
+  {
+    "name": "app_api",
+    "description": "Call an exact allowlisted app route with typed arguments and the same permission gates.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "maxLength": 80,
+          "title": "App Id",
+          "type": "string"
+        },
+        "method": {
+          "default": "GET",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "path": {
+          "description": "Exact allowlisted relative route; no URL/query string",
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "arguments": {
+          "additionalProperties": true,
+          "description": "Same typed arguments as the corresponding app tool; no raw headers or credentials",
+          "title": "Arguments",
+          "type": "object"
+        }
+      },
+      "required": [
+        "app_id",
+        "path"
+      ],
+      "title": "APIArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_health",
+    "description": "Health on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_history",
+    "description": "History on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_indexers",
+    "description": "Indexers on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_queue",
+    "description": "Queue on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_profiles",
+    "description": "Profiles on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_list",
+    "description": "List on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_search",
+    "description": "Search on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_add",
+    "description": "Add on sonarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "catalog_id": {
+          "description": "TVDB/TMDB ID or MusicBrainz/Goodreads ID depending on app",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Catalog Id",
+          "type": "string"
+        },
+        "root_folder_id": {
+          "description": "An existing configured root folder; never a new path",
+          "minimum": 1,
+          "title": "Root Folder Id",
+          "type": "integer"
+        },
+        "profile_id": {
+          "minimum": 1,
+          "title": "Profile Id",
+          "type": "integer"
+        },
+        "metadata_profile_id": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Required for Lidarr/Readarr",
+          "title": "Metadata Profile Id"
+        }
+      },
+      "required": [
+        "catalog_id",
+        "root_folder_id",
+        "profile_id"
+      ],
+      "title": "AddArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_refresh",
+    "description": "Refresh on sonarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sonarr_roots",
+    "description": "Roots on sonarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_health",
+    "description": "Health on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_history",
+    "description": "History on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_indexers",
+    "description": "Indexers on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_queue",
+    "description": "Queue on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_profiles",
+    "description": "Profiles on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_list",
+    "description": "List on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_search",
+    "description": "Search on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_add",
+    "description": "Add on radarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "catalog_id": {
+          "description": "TVDB/TMDB ID or MusicBrainz/Goodreads ID depending on app",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Catalog Id",
+          "type": "string"
+        },
+        "root_folder_id": {
+          "description": "An existing configured root folder; never a new path",
+          "minimum": 1,
+          "title": "Root Folder Id",
+          "type": "integer"
+        },
+        "profile_id": {
+          "minimum": 1,
+          "title": "Profile Id",
+          "type": "integer"
+        },
+        "metadata_profile_id": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Required for Lidarr/Readarr",
+          "title": "Metadata Profile Id"
+        }
+      },
+      "required": [
+        "catalog_id",
+        "root_folder_id",
+        "profile_id"
+      ],
+      "title": "AddArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_refresh",
+    "description": "Refresh on radarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "radarr_roots",
+    "description": "Roots on radarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_health",
+    "description": "Health on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_history",
+    "description": "History on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_indexers",
+    "description": "Indexers on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_queue",
+    "description": "Queue on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_profiles",
+    "description": "Profiles on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_list",
+    "description": "List on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_search",
+    "description": "Search on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_add",
+    "description": "Add on lidarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "catalog_id": {
+          "description": "TVDB/TMDB ID or MusicBrainz/Goodreads ID depending on app",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Catalog Id",
+          "type": "string"
+        },
+        "root_folder_id": {
+          "description": "An existing configured root folder; never a new path",
+          "minimum": 1,
+          "title": "Root Folder Id",
+          "type": "integer"
+        },
+        "profile_id": {
+          "minimum": 1,
+          "title": "Profile Id",
+          "type": "integer"
+        },
+        "metadata_profile_id": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Required for Lidarr/Readarr",
+          "title": "Metadata Profile Id"
+        }
+      },
+      "required": [
+        "catalog_id",
+        "root_folder_id",
+        "profile_id"
+      ],
+      "title": "AddArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_refresh",
+    "description": "Refresh on lidarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_roots",
+    "description": "Roots on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "lidarr_metadataprofiles",
+    "description": "Metadataprofiles on lidarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_health",
+    "description": "Health on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_history",
+    "description": "History on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_indexers",
+    "description": "Indexers on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_queue",
+    "description": "Queue on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_profiles",
+    "description": "Profiles on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_list",
+    "description": "List on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_search",
+    "description": "Search on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_add",
+    "description": "Add on readarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "catalog_id": {
+          "description": "TVDB/TMDB ID or MusicBrainz/Goodreads ID depending on app",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Catalog Id",
+          "type": "string"
+        },
+        "root_folder_id": {
+          "description": "An existing configured root folder; never a new path",
+          "minimum": 1,
+          "title": "Root Folder Id",
+          "type": "integer"
+        },
+        "profile_id": {
+          "minimum": 1,
+          "title": "Profile Id",
+          "type": "integer"
+        },
+        "metadata_profile_id": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Required for Lidarr/Readarr",
+          "title": "Metadata Profile Id"
+        }
+      },
+      "required": [
+        "catalog_id",
+        "root_folder_id",
+        "profile_id"
+      ],
+      "title": "AddArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_refresh",
+    "description": "Refresh on readarr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_roots",
+    "description": "Roots on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "readarr_metadataprofiles",
+    "description": "Metadataprofiles on readarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "prowlarr_health",
+    "description": "Health on prowlarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "prowlarr_history",
+    "description": "History on prowlarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "prowlarr_indexers",
+    "description": "Indexers on prowlarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "prowlarr_search",
+    "description": "Search on prowlarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_health",
+    "description": "Health on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_history",
+    "description": "History on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_indexers",
+    "description": "Indexers on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_queue",
+    "description": "Queue on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_profiles",
+    "description": "Profiles on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_list",
+    "description": "List on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_search",
+    "description": "Search on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_add",
+    "description": "Add on whisparr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "catalog_id": {
+          "description": "TVDB/TMDB ID or MusicBrainz/Goodreads ID depending on app",
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Catalog Id",
+          "type": "string"
+        },
+        "root_folder_id": {
+          "description": "An existing configured root folder; never a new path",
+          "minimum": 1,
+          "title": "Root Folder Id",
+          "type": "integer"
+        },
+        "profile_id": {
+          "minimum": 1,
+          "title": "Profile Id",
+          "type": "integer"
+        },
+        "metadata_profile_id": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Required for Lidarr/Readarr",
+          "title": "Metadata Profile Id"
+        }
+      },
+      "required": [
+        "catalog_id",
+        "root_folder_id",
+        "profile_id"
+      ],
+      "title": "AddArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_refresh",
+    "description": "Refresh on whisparr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "whisparr_roots",
+    "description": "Roots on whisparr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "bazarr_health",
+    "description": "Health on bazarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "bazarr_list",
+    "description": "List on bazarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "bazarr_history",
+    "description": "History on bazarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "bazarr_profiles",
+    "description": "Profiles on bazarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "qbittorrent_health",
+    "description": "Health on qbittorrent. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "qbittorrent_queue",
+    "description": "Queue on qbittorrent. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "qbittorrent_history",
+    "description": "History on qbittorrent. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "qbittorrent_pause",
+    "description": "Pause on qbittorrent. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "qbittorrent_resume",
+    "description": "Resume on qbittorrent. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sabnzbd_health",
+    "description": "Health on sabnzbd. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sabnzbd_queue",
+    "description": "Queue on sabnzbd. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sabnzbd_history",
+    "description": "History on sabnzbd. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sabnzbd_pause",
+    "description": "Pause on sabnzbd. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "sabnzbd_resume",
+    "description": "Resume on sabnzbd. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "nzbget_health",
+    "description": "Health on nzbget. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "nzbget_queue",
+    "description": "Queue on nzbget. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "nzbget_history",
+    "description": "History on nzbget. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "nzbget_pause",
+    "description": "Pause on nzbget. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "nzbget_resume",
+    "description": "Resume on nzbget. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "transmission_health",
+    "description": "Health on transmission. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "transmission_queue",
+    "description": "Queue on transmission. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "transmission_history",
+    "description": "History on transmission. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "transmission_pause",
+    "description": "Pause on transmission. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "transmission_resume",
+    "description": "Resume on transmission. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "deluge_health",
+    "description": "Health on deluge. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "deluge_queue",
+    "description": "Queue on deluge. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "deluge_history",
+    "description": "History on deluge. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "deluge_pause",
+    "description": "Pause on deluge. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "deluge_resume",
+    "description": "Resume on deluge. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "overseerr_health",
+    "description": "Health on overseerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "overseerr_search",
+    "description": "Search on overseerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "overseerr_requests",
+    "description": "Requests on overseerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "overseerr_request",
+    "description": "Request on overseerr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "media_type": {
+          "enum": [
+            "movie",
+            "tv"
+          ],
+          "title": "Media Type",
+          "type": "string"
+        },
+        "media_id": {
+          "minimum": 1,
+          "title": "Media Id",
+          "type": "integer"
+        },
+        "seasons": {
+          "description": "Exactly one TV season; multiple seasons need local confirmation",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 100,
+          "title": "Seasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "media_type",
+        "media_id"
+      ],
+      "title": "RequestArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyseerr_health",
+    "description": "Health on jellyseerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyseerr_search",
+    "description": "Search on jellyseerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyseerr_requests",
+    "description": "Requests on jellyseerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyseerr_request",
+    "description": "Request on jellyseerr. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "media_type": {
+          "enum": [
+            "movie",
+            "tv"
+          ],
+          "title": "Media Type",
+          "type": "string"
+        },
+        "media_id": {
+          "minimum": 1,
+          "title": "Media Id",
+          "type": "integer"
+        },
+        "seasons": {
+          "description": "Exactly one TV season; multiple seasons need local confirmation",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 100,
+          "title": "Seasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "media_type",
+        "media_id"
+      ],
+      "title": "RequestArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "plex_health",
+    "description": "Health on plex. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "plex_list",
+    "description": "List on plex. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "plex_search",
+    "description": "Search on plex. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "plex_sessions",
+    "description": "Sessions on plex. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "plex_refresh",
+    "description": "Refresh on plex. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyfin_health",
+    "description": "Health on jellyfin. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyfin_list",
+    "description": "List on jellyfin. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyfin_search",
+    "description": "Search on jellyfin. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyfin_sessions",
+    "description": "Sessions on jellyfin. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "jellyfin_refresh",
+    "description": "Refresh on jellyfin. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "emby_health",
+    "description": "Health on emby. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "emby_list",
+    "description": "List on emby. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "emby_search",
+    "description": "Search on emby. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "query": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "SearchArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "emby_sessions",
+    "description": "Sessions on emby. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "emby_refresh",
+    "description": "Refresh on emby. Requires local autopilot; high-risk/bulk actions always require local confirmation.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "item_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Item Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id"
+      ],
+      "title": "ItemArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "tautulli_health",
+    "description": "Health on tautulli. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "tautulli_sessions",
+    "description": "Sessions on tautulli. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "tautulli_history",
+    "description": "History on tautulli. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "tautulli_list",
+    "description": "List on tautulli. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "recyclarr_health",
+    "description": "Health on recyclarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "unpackerr_health",
+    "description": "Health on unpackerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "notifiarr_health",
+    "description": "Health on notifiarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "flaresolverr_health",
+    "description": "Health on flaresolverr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "gluetun_health",
+    "description": "Health on gluetun. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "autobrr_health",
+    "description": "Health on autobrr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "autobrr_history",
+    "description": "History on autobrr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        },
+        "limit": {
+          "default": 50,
+          "maximum": 200,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ListArgs",
+      "type": "object"
+    }
+  },
+  {
+    "name": "autobrr_indexers",
+    "description": "Indexers on autobrr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "maintainerr_health",
+    "description": "Health on maintainerr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "tdarr_health",
+    "description": "Health on tdarr. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  },
+  {
+    "name": "homepage_health",
+    "description": "Health on homepage. Read-only.",
+    "inputSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "app_id": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Configured instance; defaults to app kind",
+          "title": "App Id"
+        }
+      },
+      "title": "Args",
+      "type": "object"
+    }
+  }
+]

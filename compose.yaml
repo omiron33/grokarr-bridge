@@ -1,0 +1,31 @@
+services:
+  grokarr-bridge:
+    image: grokarr-bridge:local
+    build: .
+    container_name: grokarr-bridge
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8765:8765"
+    environment:
+      GROKARR_STATE: /state
+    volumes:
+      - bridge-state:/state
+      # Optional: mount each app's actual config READ-ONLY under /configs/<kind>.
+      # - /volume1/docker/sonarr:/configs/sonarr:ro
+      # - /mnt/user/appdata/radarr:/configs/radarr:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, python, -c, "import os,pathlib,urllib.request; t=(pathlib.Path(os.environ['GROKARR_STATE'])/'pairing-secret').read_text().strip(); r=urllib.request.Request('http://127.0.0.1:8765/healthz',headers={'Authorization':'Bearer '+t}); urllib.request.urlopen(r,timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+volumes:
+  bridge-state:

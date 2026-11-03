@@ -1,0 +1,10 @@
+.git
+.venv
+.dashboard
+tests
+dist
+state
+private
+__pycache__
+*.pyc
+.env

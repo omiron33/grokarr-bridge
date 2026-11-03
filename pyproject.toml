@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "grokarr-bridge"
+version = "0.1.0"
+description = "Local-first, permission-gated MCP and CLI companion for home media services"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "Shane Fisher"}]
+dependencies = ["mcp>=1.30,<2", "httpx>=0.28,<1", "defusedxml>=0.7,<1", "PyYAML>=6,<7"]
+
+[project.scripts]
+grokarr-bridge = "grokarr_bridge.cli:main"
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "respx>=0.22,<1", "ruff>=0.14,<1", "build>=1,<2"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/grokarr_bridge"]
